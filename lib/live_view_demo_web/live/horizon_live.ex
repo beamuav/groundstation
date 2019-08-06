@@ -7,11 +7,13 @@ defmodule LiveViewDemoWeb.HorizonLive do
       <defs>
         <linearGradient id="sky" x2="0%" y2="100%">
           <stop offset="0%" stop-color="darkblue" />
+          <stop offset="66%" stop-color="blue" />
           <stop offset="100%" stop-color="skyblue" />
         </linearGradient>
         <linearGradient id="ground" x2="0%" y2="100%">
           <stop offset="0%" stop-color="sienna" />
-          <stop offset="100%" stop-color="darkbrown" />
+          <stop offset="80%" stop-color="darkbrown" />
+          <stop offset="100%" stop-color="black" />
         </linearGradient>
         <radialGradient id="circle-fade-mask" x2="0%" y2="100%">
           <stop offset="0%" stop-color="transparent" stop-opacity="0" />

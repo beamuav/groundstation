@@ -5,7 +5,7 @@ defmodule LiveViewDemoWeb.CompassLive do
     ~L"""
     <svg viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
       <rect fill="none" height="100" width="100" x="-50" y="-50" stroke="#eee" stroke-width="0.5" />
-      <text font-size="5" font-weight="bold" x="0.5" y="7" text-anchor="middle"><%= assigns.heading %>º</text>
+      <text font-size="5" font-weight="bold" x="0.5" y="-43" text-anchor="middle"><%= assigns.heading %>º</text>
       <g transform="rotate(<%= assigns.heading %>)">
         <circle  r="40" fill="whitesmoke" />
         <circle  r="38" fill="none" stroke="#aaa" stroke-width="4" stroke-dasharray="0.25 4.72" stroke-dashoffset="0" />
