@@ -1,11 +1,3 @@
-<section class="phx-hero">
-  <h1>UAV Ground Station</h1>
-  <ul>
-    <li><%= link "Compass", to: Routes.live_path(@conn, LiveViewDemoWeb.CompassLive) %></li>
-    <li><%= link "Artificial Horizon", to: Routes.live_path(@conn, LiveViewDemoWeb.HorizonLive) %></li>
-  </ul>
-</section>
-
 <section class="row">
   <article class="column">
     <h2>Resources</h2>
