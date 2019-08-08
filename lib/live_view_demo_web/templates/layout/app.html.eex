@@ -16,6 +16,8 @@
           <ul>
             <li><%= link "Compass", to: Routes.live_path(@conn, LiveViewDemoWeb.CompassLive) %></li>
             <li><%= link "Artificial Horizon", to: Routes.live_path(@conn, LiveViewDemoWeb.HorizonLive) %></li>
+            <li><%= link "Dial", to: Routes.live_path(@conn, LiveViewDemoWeb.DialLive) %></li>
+            <li><%= link "Gauge", to: Routes.live_path(@conn, LiveViewDemoWeb.GaugeLive) %></li>
           </ul>
         </nav>
       </section>

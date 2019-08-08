@@ -20,6 +20,8 @@ defmodule LiveViewDemoWeb.Router do
     get "/", PageController, :index
     live "/compass", CompassLive
     live "/horizon", HorizonLive
+    live "/dial", DialLive
+    live "/gauge", GaugeLive
   end
 
   # Other scopes may use custom stacks.

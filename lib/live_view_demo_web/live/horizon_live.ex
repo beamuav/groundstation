@@ -29,15 +29,15 @@ defmodule LiveViewDemoWeb.HorizonLive do
           <rect fill="url(#ground)" height="200" width="200" x="-100" y="0" stroke="white" stroke-width="0.25" />
 
           <g id="pitch-tape">
-            <g id="pitch-labels" fill="white" font-size="3" text-anchor="middle">
-              <text x="-20" y="-20" alignment-baseline="middle">20</text>
-              <text x="20" y="-20" alignment-baseline="middle">20</text>
-              <text x="-20" y="-10" alignment-baseline="middle">10</text>
-              <text x="20" y="-10" alignment-baseline="middle">10</text>
-              <text x="-20" y="10" alignment-baseline="middle">10</text>
-              <text x="20" y="10" alignment-baseline="middle">10</text>
-              <text x="-20" y="20" alignment-baseline="middle">20</text>
-              <text x="20" y="20" alignment-baseline="middle">20</text>
+            <g id="pitch-labels" fill="white" font-size="3" text-anchor="middle" alignment-baseline="middle">
+              <text x="-20" y="-20">20</text>
+              <text x="20" y="-20">20</text>
+              <text x="-20" y="-10">10</text>
+              <text x="20" y="-10">10</text>
+              <text x="-20" y="10">10</text>
+              <text x="20" y="10">10</text>
+              <text x="-20" y="20">20</text>
+              <text x="20" y="20">20</text>
             </g>
 
             <g id="pitch-angle-lines" stroke="white">
@@ -50,11 +50,10 @@ defmodule LiveViewDemoWeb.HorizonLive do
               <line x1="-10" y1="5" x2="10" y2="5" stroke-width="0.25"/>
               <line x1="-10" y1="15" x2="10" y2="15" stroke-width="0.25"/>
             </g>
-
-            <!-- <circle id="mask" r="40" fill="url(#circle-fade-mask)" /> -->
           </g>
         </g>
         <path id="pitch-pointer" d="M 0,-45 L -1.5,-42 L 1.5,-42 Z" fill="white" />
+            <circle id="mask" r="40" fill="url(#circle-fade-mask)" />
       </g>
 
       <g id="pitch-angle">
