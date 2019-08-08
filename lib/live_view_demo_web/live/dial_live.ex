@@ -14,7 +14,7 @@ defmodule LiveViewDemoWeb.DialLive do
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <path class="dial" fill="none" stroke="#eee" stroke-width="2" d="M 50 90 A <%= radius %> <%= radius %> 0 1 1 90 50" />
       <text x="50" y="50" fill="#999" class="value-text" text-anchor="middle" alignment-baseline="middle" dominant-baseline="central">
-        <%= round(angle) %>º
+        <%= @value %>
       </text>
       <path class="value" fill="none" stroke="#666" stroke-width="2.5" d="M 50 90 A <%= radius %> <%= radius %> 0 <%= if angle > 270, do: 1, else: 0 %> 1 <%= x %> <%= y %>"></path>
     </svg>
@@ -25,7 +25,6 @@ defmodule LiveViewDemoWeb.DialLive do
         <%= @value %>
       </fieldset>
     </form>
-
     """
   end
 

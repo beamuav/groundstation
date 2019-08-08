@@ -53,7 +53,7 @@ defmodule LiveViewDemoWeb.HorizonLive do
           </g>
         </g>
         <path id="pitch-pointer" d="M 0,-45 L -1.5,-42 L 1.5,-42 Z" fill="white" />
-            <circle id="mask" r="40" fill="url(#circle-fade-mask)" />
+        <!-- <circle id="mask" r="40" fill="url(#circle-fade-mask)" /> -->
       </g>
 
       <g id="pitch-angle">
