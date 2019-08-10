@@ -2,7 +2,9 @@
 
 @import "./phoenix.css";
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
+@import "../node_modules/leaflet/dist/leaflet.css";
 
 svg {
   font-family: 'B612', sans-serif;
 }
+
