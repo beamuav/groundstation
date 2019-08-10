@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ground Station: Team Beam</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=B612&display=swap" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header class="top">
+        <h3>UAV Ground Station</h3>
+      </header>
+      <main class="main" role="main">
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+      <div class="left">
+        <nav role="navigation">
+          <ul>
+            <li><%= link "Map", to: "/" %></li>
+            <li><%= link "Compass", to: Routes.live_path(@conn, GroundStationWeb.CompassLive) %></li>
+            <li><%= link "Artificial Horizon", to: Routes.live_path(@conn, GroundStationWeb.HorizonLive) %></li>
+            <li><%= link "Dial", to: Routes.live_path(@conn, GroundStationWeb.DialLive) %></li>
+            <li><%= link "Gauge", to: Routes.live_path(@conn, GroundStationWeb.GaugeLive) %></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="right">
+        <h5>Icons/Gauges</h5>
+      </div>
+      <footer class="bottom">
+        <h5>Notifications</h5>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    </body>
+</html>
