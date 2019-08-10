@@ -21,7 +21,6 @@ defmodule LiveViewDemoWeb.HorizonLive do
           <stop offset="100%" stop-color="black" stop-opacity="0.9" />
         </radialGradient>
       </defs>
-      <rect fill="none" height="100" width="100" x="-50" y="-50" stroke="#eee" stroke-width="0.5" />
 
       <g transform="rotate(<%= @roll_angle %>)">
         <g transform="translate(0 <%= @pitch_angle %>)">
@@ -70,16 +69,12 @@ defmodule LiveViewDemoWeb.HorizonLive do
       </g>
     </svg>
     <form phx-change="update">
-      <fieldset>
-        <label>Roll</label>
-        <input type="range" min="-180" max="180" name="roll_angle" value="<%= @roll_angle %>" />
-        <%= @roll_angle %>º
-      </fieldset>
-      <fieldset>
-        <label>Pitch</label>
-        <input type="range" min="-30" max="30" name="pitch_angle" value="<%= @pitch_angle %>" />
-        <%= @pitch_angle %>º
-      </fieldset>
+      <label>Roll</label>
+      <input type="range" min="-180" max="180" name="roll_angle" value="<%= @roll_angle %>" />
+      <%= @roll_angle %>º
+      <label>Pitch</label>
+      <input type="range" min="-30" max="30" name="pitch_angle" value="<%= @pitch_angle %>" />
+      <%= @pitch_angle %>º
     </form>
     """
   end

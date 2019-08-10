@@ -4,25 +4,24 @@ defmodule LiveViewDemoWeb.CompassLive do
   def render(assigns) do
     ~L"""
     <svg viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
-      <rect fill="none" height="100" width="100" x="-50" y="-50" stroke="#eee" stroke-width="0.5" />
       <text font-size="5" font-weight="bold" x="0.5" y="-43" text-anchor="middle"><%= assigns.heading %>º</text>
       <g transform="rotate(<%= assigns.heading %>)">
-        <circle  r="40" fill="whitesmoke" />
-        <circle  r="38" fill="none" stroke="#aaa" stroke-width="4" stroke-dasharray="0.25 4.72" stroke-dashoffset="0" />
-        <circle  r="38" fill="none" stroke="#aaa" stroke-width="4" stroke-dasharray="0.50 14.395" stroke-dashoffset="0" />
-        <circle  r="37" fill="none" stroke="#666" stroke-width="6" stroke-dasharray="0.75 57.4" stroke-dashoffset="29.3" />
-        <circle  r="37" fill="none" stroke="#111" stroke-width="6" stroke-dasharray="1.00 57.15" stroke-dashoffset="0.4" />
-        <g id="cardinal">
-          <text font-size="5" font-weight="bold" x="0" y="-29" text-anchor="middle" transform="rotate(0)">N</text>
-          <text font-size="5" font-weight="bold" x="0" y="-29" text-anchor="middle" transform="rotate(90)">E</text>
-          <text font-size="5" font-weight="bold" x="0" y="-29" text-anchor="middle" transform="rotate(180)">S</text>
-          <text font-size="5" font-weight="bold" x="0" y="-29" text-anchor="middle" transform="rotate(270)">W</text>
+        <circle r="40" fill="whitesmoke" />
+        <circle r="38" fill="none" stroke="#aaa" stroke-width="4" stroke-dasharray="0.25 4.72" stroke-dashoffset="0" />
+        <circle r="38" fill="none" stroke="#aaa" stroke-width="4" stroke-dasharray="0.50 14.395" stroke-dashoffset="0" />
+        <circle r="37" fill="none" stroke="#666" stroke-width="6" stroke-dasharray="0.75 57.4" stroke-dashoffset="29.3" />
+        <circle r="37" fill="none" stroke="#111" stroke-width="6" stroke-dasharray="1.00 57.15" stroke-dashoffset="0.4" />
+        <g id="cardinal" font-size="5" font-weight="bold" text-anchor="middle" fill="#333">
+          <text x="0" y="-29" transform="rotate(0)">N</text>
+          <text x="0" y="-29" transform="rotate(90)">E</text>
+          <text x="0" y="-29" transform="rotate(180)">S</text>
+          <text x="0" y="-29" transform="rotate(270)">W</text>
         </g>
-        <g id="primary-intercardinal">
-          <text font-size="5" font-weight="normal" x="0" y="-29" text-anchor="middle" transform="rotate(45)">NE</text>
-          <text font-size="5" font-weight="normal" x="0" y="-29" text-anchor="middle" transform="rotate(135)">SE</text>
-          <text font-size="5" font-weight="normal" x="0" y="-29" text-anchor="middle" transform="rotate(225)">SW</text>
-          <text font-size="5" font-weight="normal" x="0" y="-29" text-anchor="middle" transform="rotate(315)">NW</text>
+        <g id="primary-intercardinal" font-size="5" font-weight="normal" text-anchor="middle" fill="#333">
+          <text x="0" y="-29" transform="rotate(45)">NE</text>
+          <text x="0" y="-29" transform="rotate(135)">SE</text>
+          <text x="0" y="-29" transform="rotate(225)">SW</text>
+          <text x="0" y="-29" transform="rotate(315)">NW</text>
         </g>
       </g>
       <g>
@@ -45,6 +44,6 @@ defmodule LiveViewDemoWeb.CompassLive do
   end
 
   defp put_heading(socket, heading) do
-    assign(socket, heading: rem(heading, 360) )
+    assign(socket, heading: rem(heading, 360))
   end
 end

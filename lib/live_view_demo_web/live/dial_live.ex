@@ -19,11 +19,9 @@ defmodule LiveViewDemoWeb.DialLive do
       <path class="value" fill="none" stroke="#666" stroke-width="2.5" d="M 50 90 A <%= radius %> <%= radius %> 0 <%= if angle > 270, do: 1, else: 0 %> 1 <%= x %> <%= y %>"></path>
     </svg>
     <form phx-change="update">
-      <fieldset>
-        <label>Value</label>
-        <input type="range" min="0" max="100" name="value" value="<%= @value %>" />
-        <%= @value %>
-      </fieldset>
+      <label>Value</label>
+      <input type="range" min="0" max="100" name="value" value="<%= @value %>" />
+      <%= @value %>
     </form>
     """
   end

@@ -15,12 +15,12 @@
         <h3>UAV Ground Station</h3>
       </header>
       <main class="main" role="main">
-        Main panel
         <%= render @view_module, @view_template, assigns %>
       </main>
       <div class="left">
         <nav role="navigation">
           <ul>
+            <li><%= link "Map", to: "/" %></li>
             <li><%= link "Compass", to: Routes.live_path(@conn, LiveViewDemoWeb.CompassLive) %></li>
             <li><%= link "Artificial Horizon", to: Routes.live_path(@conn, LiveViewDemoWeb.HorizonLive) %></li>
             <li><%= link "Dial", to: Routes.live_path(@conn, LiveViewDemoWeb.DialLive) %></li>

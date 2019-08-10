@@ -34,7 +34,7 @@
 }
 
 .main {
-  grid-column: 3 / 12;
+  grid-column: 3 / 11;
   grid-row: 2 / 12;
 }
 
@@ -47,10 +47,14 @@
 .right {
   background-color: #252525;
   grid-row: 2 / 12;
-  grid-column: 12;
+  grid-column: 11 / 13;
 }
 
 #map {
   width: 100%;
   height: 100%;
+}
+
+svg {
+  fill: #eee;
 }
