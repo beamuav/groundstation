@@ -8,7 +8,11 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = (env, options) => ({
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false
+      }),
       new OptimizeCSSAssetsPlugin({})
     ]
   },
@@ -22,8 +26,7 @@ module.exports = (env, options) => ({
     path: path.resolve(__dirname, "../priv/static/js")
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -32,16 +35,30 @@ module.exports = (env, options) => ({
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
+        use: [{
+            loader: MiniCssExtractPlugin.loader,
+            options: {},
+          },
+          "css-loader",
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"]
+        loader: "file-loader",
+        options: {
+          outputPath: "images",
+          name: '[name].[ext]',
+        }
       }
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "../css/app.css" }),
-    new CopyWebpackPlugin([{ from: "static/", to: "../" }])
+    new MiniCssExtractPlugin({
+      filename: "../css/app.css"
+    }),
+    new CopyWebpackPlugin([{
+      from: "static/",
+      to: "../"
+    }])
   ]
 });

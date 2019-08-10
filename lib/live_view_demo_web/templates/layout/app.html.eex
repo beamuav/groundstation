@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ground Station: Team Beam</title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-    <link href="https://fonts.googleapis.com/css?family=B612&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=B612&display=swap" />
   </head>
+
   <body>
-    <header>
-      <section class="container">
+    <div class="wrapper">
+      <header class="top">
+        <h3>UAV Ground Station</h3>
+      </header>
+      <main class="main" role="main">
+        Main panel
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+      <div class="left">
         <nav role="navigation">
-          <%# <h1>UAV Ground Station</h1> %>
           <ul>
             <li><%= link "Compass", to: Routes.live_path(@conn, LiveViewDemoWeb.CompassLive) %></li>
             <li><%= link "Artificial Horizon", to: Routes.live_path(@conn, LiveViewDemoWeb.HorizonLive) %></li>
@@ -20,14 +27,17 @@
             <li><%= link "Gauge", to: Routes.live_path(@conn, LiveViewDemoWeb.GaugeLive) %></li>
           </ul>
         </nav>
-      </section>
-    </header>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <%= render @view_module, @view_template, assigns %>
-    </main>
-  
+      </div>
+      <div class="right">
+        <h5>Icons/Gauges</h5>
+      </div>
+      <footer class="bottom">
+        <h5>Notifications</h5>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      </footer>
+    </div>
+
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
-  </body>
+    </body>
 </html>
