@@ -68,14 +68,14 @@ defmodule GroundStationWeb.HorizonLive do
         <line x1="5" y1="4" x2="0" y2="0" stroke-linecap="square" stroke-width="1" />
       </g>
     </svg>
-    <form phx-change="update">
+    <!--<form phx-change="update">
       <label>Roll</label>
       <input type="range" min="-180" max="180" name="roll_angle" value="<%= @roll_angle %>" />
       <%= @roll_angle %>º
       <label>Pitch</label>
       <input type="range" min="-30" max="30" name="pitch_angle" value="<%= @pitch_angle %>" />
       <%= @pitch_angle %>º
-    </form>
+    </form>-->
     """
   end
 

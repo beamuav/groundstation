@@ -9,9 +9,11 @@
   <%= live_render(@conn, GroundStationWeb.DialLive) %>
 </div>
 
-<div class="main-left">
+<div class="main-top-left">
   <%= live_render(@conn, GroundStationWeb.HorizonLive) %>
-  <%= live_render(@conn, GroundStationWeb.CompassLive) %>
-
 </div>
-<div id="map" class="main-right">Map</div>
+<div class="main-bottom-left">
+  <%= live_render(@conn, GroundStationWeb.CompassLive) %>
+</div>
+<div id="view" class="main-top-right">3d map</div>
+<div id="map" class="main-bottom-right"></div>
