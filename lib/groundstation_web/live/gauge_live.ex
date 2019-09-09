@@ -22,14 +22,14 @@ defmodule GroundStationWeb.GaugeLive do
         <path id="gauge-pointer" d="M <%= normalised_value %>,24 L <%= normalised_value - 3  %>,15 L <%= normalised_value + 3 %>,15 Z" fill="red" stroke="#222" stroke-width="0.5" />
       </g>
     </svg>
-    <form phx-change="update">
-      <label>Value</label>
-      <input type="range" min="0" max="3000" name="value" value="<%= @value %>" />
-      <strong><%= @value %></strong>
-      <%= @units %>
-    </form>
-
     """
+
+    # <form phx-change="update">
+    #   <label>Value</label>
+    #   <input type="range" min="0" max="3000" name="value" value="<%= @value %>" />
+    #   <strong><%= @value %></strong>
+    #   <%= @units %>
+    # </form>
   end
 
   def mount(_session, socket) do

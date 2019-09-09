@@ -1,6 +1,6 @@
 import L from "leaflet";
 
-const map = L.map("map").setView([-27.272292, 151.282036], 13);
+const map = L.map("map").setView(["-27.272292", "151.282036"], 13);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

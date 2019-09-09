@@ -33,8 +33,13 @@
   grid-row: 12;
 }
 
-.main {
-  grid-column: 3 / 11;
+.main-left {
+  grid-column: 3 / 7;
+  grid-row: 2 / 12;
+}
+
+.main-right {
+  grid-column: 7 / 11;
   grid-row: 2 / 12;
 }
 

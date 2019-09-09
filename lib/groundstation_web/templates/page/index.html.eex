@@ -1,1 +1,17 @@
-<div id="map"></div>
+<div class="left">
+  <%= live_render(@conn, GroundStationWeb.GaugeLive) %>
+  <%= live_render(@conn, GroundStationWeb.DialLive) %>
+  <%= live_render(@conn, GroundStationWeb.DialLive) %>
+</div>
+<div class="right">
+  <%= live_render(@conn, GroundStationWeb.GaugeLive) %>
+  <%= live_render(@conn, GroundStationWeb.DialLive ) %>
+  <%= live_render(@conn, GroundStationWeb.DialLive) %>
+</div>
+
+<div class="main-left">
+  <%= live_render(@conn, GroundStationWeb.HorizonLive) %>
+  <%= live_render(@conn, GroundStationWeb.CompassLive) %>
+
+</div>
+<div id="map" class="main-right">Map</div>
