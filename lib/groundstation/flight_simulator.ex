@@ -12,26 +12,26 @@ defmodule FlightSimulator do
   - All speeds are expressed in metres per second
   """
 
-  @pitch_delta 1
-  @max_pitch_angle 20
-  @min_pitch_angle -20
+  @pitch_delta 1.0
+  @max_pitch_angle 20.0
+  @min_pitch_angle -20.0
 
   @roll_delta 1
-  @max_roll_angle 30
-  @min_roll_angle -30
+  @max_roll_angle 30.0
+  @min_roll_angle -30.0
 
-  @yaw_delta 1
+  @yaw_delta 1.0
 
-  @speed_delta 5
-  @min_speed 25
-  @max_speed 100
+  @speed_delta 5.0
+  @min_speed 10.0
+  @max_speed 100.0
 
   defstruct bearing: 0.0,
             altitude: 500.0,
             pitch_angle: 0.0,
             roll_angle: 0.0,
             speed: 50.0,
-            location: {0.0, 0.0}
+            location: %{lat: 0.0, lng: 0.0}
 
   def speed_down(state),
     do: struct(state, speed: max(state.speed - @speed_delta, @min_speed))
@@ -69,7 +69,7 @@ defmodule FlightSimulator do
         roll_angle: 0.0,
         speed: 50.0,
         bearing: 0.0,
-        location: {0.004496608029593652, 0.0}
+        location: %{lat: 0.004496608029593652, lng: 0.0}
       }
 
   """
@@ -204,11 +204,11 @@ defmodule FlightSimulator do
   Need this for lat/lng point given distance and bearing
   http://www.movable-type.co.uk/scripts/latlong.html#dest-point
   """
-  def update_location({lat, lng}, bearing, distance) do
+  def update_location(%{lat: lat, lng: lng}, bearing, distance) do
     {:ok, [lat_new, lng_new]} =
       destination_point({lat, lng}, degrees_to_radians(bearing), distance)
 
-    {lat_new, lng_new}
+    %{lat: lat_new, lng: lng_new}
   end
 
   defp sin(a), do: :math.sin(degrees_to_radians(a))

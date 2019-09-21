@@ -1,0 +1,27 @@
+<div class="wrapper" phx-keyup="control_input" phx-target="document">
+  <header class="top">
+    <h3>Ground Control to Major Tom</h3>
+  </header>
+  <div class="left">
+    <%= live_render(@socket, GroundStationWeb.GaugeLive) %>
+    <%= live_render(@socket, GroundStationWeb.DialLive) %>
+    <%= live_render(@socket, GroundStationWeb.DialLive) %>
+  </div>
+  <div class="right">
+    <%= live_render(@socket, GroundStationWeb.GaugeLive) %>
+    <%= live_render(@socket, GroundStationWeb.DialLive) %>
+    <%= live_render(@socket, GroundStationWeb.DialLive) %>
+  </div>
+
+  <div class="main-top-left">
+    <%= live_render(@socket, GroundStationWeb.HorizonLive) %>
+  </div>
+  <div class="main-bottom-left">
+    <%= live_render(@socket, GroundStationWeb.CompassLive) %>
+  </div>
+  <div id="view" class="main-top-right"></div>
+  <div id="map" class="main-bottom-right"></div>
+
+  <footer class="bottom">
+  </footer>
+</div>

@@ -4,8 +4,8 @@ defmodule GroundStationWeb.CompassLive do
   def render(assigns) do
     ~L"""
     <svg viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
-      <text font-size="5" font-weight="bold" x="0.5" y="-43" text-anchor="middle"><%= assigns.heading %>º</text>
-      <g transform="rotate(<%= assigns.heading %>)">
+      <text font-size="5" font-weight="bold" x="0.5" y="-43" text-anchor="middle"><%= 0 #@bearing %>º</text>
+      <g transform="rotate(<%= 0 #@bearing %>)">
         <circle r="40" fill="whitesmoke" />
         <circle r="38" fill="none" stroke="#aaa" stroke-width="4" stroke-dasharray="0.25 4.72" stroke-dashoffset="0" />
         <circle r="38" fill="none" stroke="#aaa" stroke-width="4" stroke-dasharray="0.50 14.395" stroke-dashoffset="0" />
@@ -33,17 +33,11 @@ defmodule GroundStationWeb.CompassLive do
     """
   end
 
-  def mount(_session, socket) do
-    if connected?(socket), do: :timer.send_interval(250, self(), :tick)
+  def mount(session, socket) do
+    # if connected?(socket), do: nil
+    # IO.inspect({:compass, session, socket})
 
-    {:ok, put_heading(socket, 0)}
-  end
-
-  def handle_info(:tick, socket) do
-    {:noreply, put_heading(socket, socket.assigns.heading + 1)}
-  end
-
-  defp put_heading(socket, heading) do
-    assign(socket, heading: rem(heading, 360))
+    # {:ok, assign(socket, bearing: session.bearing)}
+    {:ok, socket}
   end
 end
