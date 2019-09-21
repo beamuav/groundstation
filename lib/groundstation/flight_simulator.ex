@@ -33,8 +33,6 @@ defmodule FlightSimulator do
             speed: 50.0,
             location: {0.0, 0.0}
 
-  # Control input functions
-
   def speed_down(state),
     do: struct(state, speed: max(state.speed - @speed_delta, @min_speed))
 
@@ -54,10 +52,10 @@ defmodule FlightSimulator do
     do: struct(state, roll_angle: min(state.roll_angle + @roll_delta, @max_roll_angle))
 
   def yaw_left(state),
-    do: struct(state, bearing: rem(state.bearing - @yaw_delta, 360))
+    do: struct(state, bearing: update_bearing(state.bearing, -@yaw_delta))
 
   def yaw_right(state),
-    do: struct(state, bearing: rem(state.bearing + @yaw_delta, 360))
+    do: struct(state, bearing: update_bearing(state.bearing, @yaw_delta))
 
   @doc """
   Calculate the changes in the simulator state over the time given in seconds.
@@ -79,10 +77,45 @@ defmodule FlightSimulator do
     distance = ground_distance(state.speed, time, state.pitch_angle)
 
     struct(state,
-      bearing: state.bearing + bearing_delta_for_roll(state.roll_angle, state.speed, time),
+      bearing:
+        update_bearing(state.bearing, bearing_delta_for_roll(state.roll_angle, state.speed, time)),
       altitude: state.altitude + altitude_delta(distance, state.pitch_angle),
-      location: updated_location(state.location, state.bearing, distance)
+      location: update_location(state.location, state.bearing, distance)
     )
+  end
+
+  @doc """
+  Calculate new bearing given the current bearing (in degrees) and a delta (in degrees).
+
+  ## Example
+
+      iex> update_bearing(0, 0)
+      0.0
+      iex> update_bearing(0, 1)
+      1.0
+      iex> update_bearing(0, 180)
+      180.0
+      iex> update_bearing(360, 270)
+      270.0
+      iex> update_bearing(0, -1)
+      359.0
+      iex> update_bearing(0, -180)
+      180.0
+      iex> update_bearing(0, -360)
+      0.0
+
+  """
+  def update_bearing(bearing, delta) do
+    new_bearing =
+      (bearing + delta)
+      |> degrees_to_radians()
+      |> radians_to_degrees()
+
+    if new_bearing >= 0 do
+      new_bearing
+    else
+      360 + new_bearing
+    end
   end
 
   @doc """
@@ -171,7 +204,7 @@ defmodule FlightSimulator do
   Need this for lat/lng point given distance and bearing
   http://www.movable-type.co.uk/scripts/latlong.html#dest-point
   """
-  def updated_location({lat, lng}, bearing, distance) do
+  def update_location({lat, lng}, bearing, distance) do
     {:ok, [lat_new, lng_new]} =
       destination_point({lat, lng}, degrees_to_radians(bearing), distance)
 
