@@ -149,6 +149,10 @@ defmodule FlightSimulator do
       5.400716176417849
       iex> rate_of_turn(-30, 60)
       -5.400716176417849
+      iex> rate_of_turn(10, 60)
+      1.6494180878927642
+      iex> rate_of_turn(-10, 60)
+      -1.6494180878927642
 
   """
   @knots_per_metre_per_second 1.9438444924406
@@ -170,9 +174,7 @@ defmodule FlightSimulator do
     {lat_new, lng_new}
   end
 
-  defp sin(angle_in_degrees), do: angle_in_degrees |> degrees_to_radians() |> :math.sin()
-
-  defp cos(angle_in_degrees), do: angle_in_degrees |> degrees_to_radians() |> :math.cos()
-
-  defp tan(angle_in_degrees), do: angle_in_degrees |> degrees_to_radians() |> :math.tan()
+  defp sin(a), do: :math.sin(degrees_to_radians(a))
+  defp cos(a), do: :math.cos(degrees_to_radians(a))
+  defp tan(a), do: :math.tan(degrees_to_radians(a))
 end

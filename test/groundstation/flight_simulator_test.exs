@@ -2,7 +2,7 @@ defmodule FlightSimulatorTest do
   use ExUnit.Case
 
   import FlightSimulator
-  
+
   doctest FlightSimulator, import: true
 
   @delta 0.0000000000001
