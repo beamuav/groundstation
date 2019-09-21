@@ -23,7 +23,7 @@ defmodule FlightSimulator do
   @yaw_delta 1
 
   @speed_delta 5
-  @min_speed 15
+  @min_speed 25
   @max_speed 100
 
   defstruct bearing: 0.0,
@@ -139,9 +139,9 @@ defmodule FlightSimulator do
   end
 
   @doc """
-  Calculate rate of turn (in degrees / second) given roll angle (in degrees) and current speed (in m/s) .
+  Calculate rate of turn (in degrees / second) given roll angle (in degrees) and current speed (in m/s).
 
-  See http://www.flightlearnings.com/2009/08/26/rate-of-turn/
+  See http://www.flightlearnings.com/2009/08/26/rate-of-turn/ for formula.
 
   ## Example
 
@@ -153,6 +153,10 @@ defmodule FlightSimulator do
       1.6494180878927642
       iex> rate_of_turn(-10, 60)
       -1.6494180878927642
+      iex> rate_of_turn(10, 30)
+      3.2988361757855285
+      iex> rate_of_turn(-10, 30)
+      -3.2988361757855285
 
   """
   @knots_per_metre_per_second 1.9438444924406
