@@ -1,12 +1,12 @@
 defmodule GroundStationWeb.SimulatorLive do
   use Phoenix.LiveView
 
-  @tick 100
+  @tick 15
   @tick_seconds @tick / 1000
 
   def render(assigns) do
     ~L"""
-    <div class="wrapper" phx-keyup="control_input" phx-target="window">
+    <div class="wrapper" phx-keydown="control_input" phx-target="window">
       <header class="top">
         <h3>Ground Control to Major Tom</h3>
       </header>
@@ -178,6 +178,24 @@ defmodule GroundStationWeb.SimulatorLive do
   def handle_event("control_input", %{"code" => "Equal"}, socket) do
     socket.assigns.simulator
     |> FlightSimulator.speed_up()
+    |> update_simulator(socket)
+  end
+
+  def handle_event("control_input", %{"code" => "Comma"}, socket) do
+    socket.assigns.simulator
+    |> FlightSimulator.yaw_left()
+    |> update_simulator(socket)
+  end
+
+  def handle_event("control_input", %{"code" => "Period"}, socket) do
+    socket.assigns.simulator
+    |> FlightSimulator.yaw_right()
+    |> update_simulator(socket)
+  end
+
+  def handle_event("control_input", %{"code" => "Space"}, socket) do
+    socket.assigns.simulator
+    |> FlightSimulator.reset_attitude()
     |> update_simulator(socket)
   end
 

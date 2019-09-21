@@ -13,18 +13,20 @@ defmodule FlightSimulator do
   """
 
   @pitch_delta 1.0
-  @max_pitch_angle 20.0
-  @min_pitch_angle -20.0
+  @max_pitch_angle 25.0
+  @min_pitch_angle -25.0
 
   @roll_delta 1
-  @max_roll_angle 30.0
-  @min_roll_angle -30.0
+  @max_roll_angle 50.0
+  @min_roll_angle -50.0
 
   @yaw_delta 1.0
 
   @speed_delta 5.0
   @min_speed 10.0
-  @max_speed 100.0
+  @max_speed 200.0
+
+  @reset_factor 1.1
 
   defstruct bearing: 0.0,
             altitude: 500.0,
@@ -32,6 +34,13 @@ defmodule FlightSimulator do
             roll_angle: 0.0,
             speed: 50.0,
             location: %{lat: 0.0, lng: 0.0}
+
+  def reset_attitude(state),
+    do:
+      struct(state,
+        pitch_angle: state.pitch_angle / @reset_factor,
+        roll_angle: state.roll_angle / @reset_factor
+      )
 
   def speed_down(state),
     do: struct(state, speed: max(state.speed - @speed_delta, @min_speed))
