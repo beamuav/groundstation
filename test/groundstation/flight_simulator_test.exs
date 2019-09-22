@@ -20,7 +20,7 @@ defmodule FlightSimulatorTest do
 
   test "speed control, max and min" do
     assert FS.speed_up(%FS{speed: 50}).speed == 55
-    assert FS.speed_up(%FS{speed: 100}).speed == 100
+    assert FS.speed_up(%FS{speed: 200}).speed == 200
     assert FS.speed_down(%FS{speed: 50}).speed == 45
     assert FS.speed_down(%FS{speed: 10}).speed == 10
   end
@@ -34,9 +34,9 @@ defmodule FlightSimulatorTest do
 
   test "roll control, max and min" do
     assert FS.roll_right(%FS{roll_angle: 0}).roll_angle == 1
-    assert FS.roll_right(%FS{roll_angle: 30}).roll_angle == 30
+    assert FS.roll_right(%FS{roll_angle: 50}).roll_angle == 50
     assert FS.roll_left(%FS{roll_angle: 0}).roll_angle == -1
-    assert FS.roll_left(%FS{roll_angle: -30}).roll_angle == -30
+    assert FS.roll_left(%FS{roll_angle: -50}).roll_angle == -50
   end
 
   test "yaw control, max and min" do

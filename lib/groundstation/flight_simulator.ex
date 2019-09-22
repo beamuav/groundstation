@@ -13,8 +13,8 @@ defmodule FlightSimulator do
   """
 
   @pitch_delta 1.0
-  @max_pitch_angle 25.0
-  @min_pitch_angle -25.0
+  @max_pitch_angle 20.0
+  @min_pitch_angle -20.0
 
   @roll_delta 1
   @max_roll_angle 50.0
