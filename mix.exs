@@ -36,7 +36,7 @@ defmodule GroundStation.MixProject do
       {:phoenix, "~> 1.4.9"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_live_view, "~> 0.1.0"},
+      {:phoenix_live_view, "~> 0.3"},
       {:ecto_sql, "~> 3.1"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
@@ -44,7 +44,7 @@ defmodule GroundStation.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:calendar, "~> 0.17.6"},
+      {:calendar, "~> 1.0"},
       {:geocalc, "~> 0.5"}
     ]
   end
