@@ -26,6 +26,8 @@ defmodule FlightSimulator do
   @min_speed 10.0
   @max_speed 200.0
 
+  @min_altitude 0.0
+
   @reset_factor 1.1
 
   defstruct bearing: 0.0,
@@ -88,7 +90,7 @@ defmodule FlightSimulator do
     struct(state,
       bearing:
         update_bearing(state.bearing, bearing_delta_for_roll(state.roll_angle, state.speed, time)),
-      altitude: state.altitude + altitude_delta(distance, state.pitch_angle),
+      altitude: update_altitude(state.altitude, altitude_delta(distance, state.pitch_angle)),
       location: update_location(state.location, state.bearing, distance)
     )
   end
@@ -125,6 +127,27 @@ defmodule FlightSimulator do
     else
       360 + new_bearing
     end
+  end
+
+  @doc """
+  Calculate new altitude given the current altitude (in metres) and a delta (in metres).
+
+  ## Example
+
+      iex> update_altitude(0, 0)
+      0.0
+      iex> update_altitude(0, 1)
+      1.0
+      iex> update_altitude(0, -1)
+      0.0
+      iex> update_altitude(500, 1)
+      501.0
+      iex> update_altitude(500, -501)
+      0.0
+
+  """
+  def update_altitude(altitude, delta) do
+    max(@min_altitude, altitude + delta) / 1
   end
 
   @doc """
