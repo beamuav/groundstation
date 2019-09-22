@@ -199,7 +199,7 @@ defmodule GroundStationWeb.SimulatorLive do
     |> update_simulator(socket)
   end
 
-  def handle_event("control_input", key, socket) do
+  def handle_event("control_input", _key, socket) do
     # IO.inspect("Unhandled: #{inspect(key)}")
     {:noreply, socket}
   end
