@@ -6,16 +6,13 @@ defmodule GroundStationWeb.SimulatorLive do
 
   def render(assigns) do
     ~L"""
-    <div class="wrapper" phx-keydown="control_input" phx-target="window">
-      <header class="top">
-        <h3>Ground Control to Major Tom</h3>
-      </header>
-      <div class="left">
-        <%= live_render(@socket, GroundStationWeb.GaugeLive) %>
-        <%= live_render(@socket, GroundStationWeb.DialLive) %>
-        <%= live_render(@socket, GroundStationWeb.DialLive) %>
+    <div phx-keydown="control_input" phx-target="window">
+      <div class="xbox">
+        <%= #live_render(@socket, GroundStationWeb.GaugeLive) %>
+        <%= #live_render(@socket, GroundStationWeb.DialLive) %>
+        <%= #live_render(@socket, GroundStationWeb.DialLive) %>
       </div>
-      <div class="right">
+      <div class="xbox">
         <div>Altitude <b><%= Float.round(@simulator.altitude, 1) %></b> m</div>
         <div>Speed <b><%= Float.round(@simulator.speed, 1) %></b> m/s</div>
         <div>Lat <b><%= Float.round(@simulator.location.lat, 5) %></b></div>
@@ -23,7 +20,7 @@ defmodule GroundStationWeb.SimulatorLive do
 
       </div>
 
-      <div class="main-top-left">
+      <div class="box">
         <svg viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="sky" x2="0%" y2="100%">
@@ -90,7 +87,7 @@ defmodule GroundStationWeb.SimulatorLive do
           </g>
         </svg>
       </div>
-      <div class="main-bottom-left">
+      <div class="box">
         <svg viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
           <text font-size="5" font-weight="bold" x="0.5" y="-43" text-anchor="middle"><%= Float.round(@simulator.bearing,1) %>º</text>
           <g transform="rotate(-<%= @simulator.bearing %>)">
@@ -120,11 +117,14 @@ defmodule GroundStationWeb.SimulatorLive do
         </svg>
 
       </div>
-      <div id="view" class="main-top-right"></div>
-      <div id="map" class="main-bottom-right"></div>
-
-      <footer class="bottom">
-      </footer>
+      <span
+        phx-hook="Map"
+        data-lat="<%= @simulator.location.lat %>"
+        data-lng="<%= @simulator.location.lng %>"
+        data-alt="<%= @simulator.altitude %>"
+        data-bearing="<%= @simulator.bearing %>"
+        data-pitch="<%= @simulator.pitch_angle %>">
+      </span>
     </div>
     """
   end
@@ -132,7 +132,8 @@ defmodule GroundStationWeb.SimulatorLive do
   def mount(_session, socket) do
     if connected?(socket), do: :timer.send_interval(@tick, self(), :tick)
 
-    {:ok, assign(socket, simulator: %FlightSimulator{})}
+    {:ok,
+     assign(socket, simulator: %FlightSimulator{location: %{lat: -27.272292, lng: 151.282036}})}
   end
 
   def handle_info(:tick, socket) do
@@ -200,7 +201,7 @@ defmodule GroundStationWeb.SimulatorLive do
   end
 
   def handle_event("control_input", _key, socket) do
-    # IO.inspect("Unhandled: #{inspect(key)}")
+    # IO.puts("Unhandled: #{inspect(key)}")
     {:noreply, socket}
   end
 

@@ -3,6 +3,10 @@
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
 @import "../node_modules/leaflet/dist/leaflet.css";
 
+body {
+  background-color: #222;
+}
+
 * {
   font-family: "B612", sans-serif;
   box-sizing: border-box;
@@ -12,7 +16,6 @@
 }
 
 .wrapper {
-  background-color: #222;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
@@ -31,6 +34,11 @@
   background-color: #252525;
   grid-column: 1 / 13;
   grid-row: 12;
+}
+
+.main {
+  grid-column: 3 / 11;
+  grid-row: 2 / 12;
 }
 
 .main-top-left {
@@ -65,14 +73,12 @@
   grid-column: 11 / 13;
 }
 
-#map {
-  width: 100%;
-  height: 100%;
-}
-
+.box,
+#map,
 #view {
-  width: 100%;
-  height: 100%;
+  display: inline-block;
+  width: 400px;
+  height: 400px;
 }
 
 svg {

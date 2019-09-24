@@ -10,7 +10,19 @@
   </head>
 
   <body>
-    <%= render @view_module, @view_template, assigns %>
+    <div class="xwrapper">
+      <header class="top">
+        <h3>Ground Control to Major Tom</h3>
+      </header>
+      
+      <%= render @view_module, @view_template, assigns %>
+
+      <div id="map">MAP</div>
+      <div id="view">VIEW</div>
+
+      <footer class="bottom">
+      </footer>
+    </div>
 
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 
