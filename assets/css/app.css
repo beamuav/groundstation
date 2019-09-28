@@ -84,3 +84,7 @@ body {
 svg {
   fill: #eee;
 }
+
+.esri-ui {
+  display: none;
+}

@@ -1,11 +1,11 @@
 defmodule GroundStationWeb.CompassLive do
   use Phoenix.LiveView
 
-  def render(assigns) do
-    ~L"""
+  def render_static do
+    """
     <svg viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
-      <text font-size="5" font-weight="bold" x="0.5" y="-43" text-anchor="middle"><%= 0 #@bearing %>º</text>
-      <g transform="rotate(<%= 0 #@bearing %>)">
+      <text font-size="5" font-weight="bold" x="0.5" y="-43" text-anchor="middle"><%= Float.round(@simulator.bearing,1) %>º</text>
+      <g transform="rotate(-<%= @simulator.bearing %>)">
         <circle r="40" fill="whitesmoke" />
         <circle r="38" fill="none" stroke="#aaa" stroke-width="4" stroke-dasharray="0.25 4.72" stroke-dashoffset="0" />
         <circle r="38" fill="none" stroke="#aaa" stroke-width="4" stroke-dasharray="0.50 14.395" stroke-dashoffset="0" />
@@ -34,10 +34,7 @@ defmodule GroundStationWeb.CompassLive do
   end
 
   def mount(session, socket) do
-    # if connected?(socket), do: nil
-    # IO.inspect({:compass, session, socket})
-
-    # {:ok, assign(socket, bearing: session.bearing)}
-    {:ok, socket}
+    IO.inspect(session: session)
+    {:ok, assign(socket, simulator: session.simulator)}
   end
 end

@@ -22,8 +22,9 @@ import {
 } from "phoenix";
 import L from "leaflet"
 import {
-  loadModules
-} from 'esri-loader';
+  mountView,
+  updateView
+} from "./view"
 import {
   plane
 } from "./map"
@@ -47,14 +48,7 @@ Hooks.Map = {
       icon: plane(location.bearing)
     }).addTo(document.map)
 
-    if (document.view) {
-      document.view.goTo({
-        center: [parseFloat(location.lat), parseFloat(location.lng), parseFloat(location.alt)],
-        zoom: 13,
-        heading: parseFloat(location.bearing),
-        tilt: 80
-      })
-    }
+    mountView(location)
   },
   updated() {
     const location = {
@@ -67,20 +61,7 @@ Hooks.Map = {
     document.map.setView(location, 12)
     document.mapMarker.setLatLng(location).setIcon(plane(location.bearing))
 
-    if (document.view) {
-      // console.log({
-      //   location
-      // })
-      document.view.goTo({
-        heading: parseFloat(location.bearing),
-        tilt: 80,
-        position: {
-          latitude: parseFloat(location.lat),
-          longitude: parseFloat(location.lng),
-          z: parseFloat(location.alt),
-        }
-      })
-    }
+    updateView(location)
   }
 }
 
