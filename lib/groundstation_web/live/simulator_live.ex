@@ -29,9 +29,9 @@ defmodule GroundStationWeb.SimulatorLive do
               <stop offset="100%" stop-color="skyblue" />
             </linearGradient>
             <linearGradient id="ground" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="sienna" />
-              <stop offset="80%" stop-color="darkbrown" />
-              <stop offset="100%" stop-color="black" />
+              <stop offset="0%" stop-color="green" />
+              <stop offset="80%" stop-color="darkgreen" />
+              <stop offset="100%" stop-color="darkgreen" />
             </linearGradient>
             <radialGradient id="circle-fade-mask" x2="0%" y2="100%">
               <stop offset="0%" stop-color="transparent" stop-opacity="0" />
@@ -40,38 +40,41 @@ defmodule GroundStationWeb.SimulatorLive do
             </radialGradient>
           </defs>
 
-          <g transform="rotate(<%= @simulator.roll_angle %>)">
+          <mask id="circle-mask">
+            <circle cx="0" cy="0" r="45" fill="white"/>
+          </mask>
+
+          <g transform="rotate(<%= @simulator.roll_angle %>)"  mask="url(#circle-mask)">
             <g transform="translate(0 <%= @simulator.pitch_angle %>)">
-              <rect fill="url(#sky)" height="200" width="200" x="-100" y="-200" />
-              <rect fill="url(#ground)" height="200" width="200" x="-100" y="0" stroke="white" stroke-width="0.25" />
+              <rect fill="url(#sky)" height="200" width="200" x="-100" y="-200"/>
+              <rect fill="url(#ground)" height="200" width="200" x="-100" y="0" stroke="white" stroke-width="0.25"/>
+                <g id="pitch-tape">
+                  <g id="pitch-labels" fill="white" font-size="3" text-anchor="middle" alignment-baseline="middle">
+                    <text x="-20" y="-20">20</text>
+                    <text x="20" y="-20">20</text>
+                    <text x="-20" y="-10">10</text>
+                    <text x="20" y="-10">10</text>
+                    <text x="-20" y="10">10</text>
+                    <text x="20" y="10">10</text>
+                    <text x="-20" y="20">20</text>
+                    <text x="20" y="20">20</text>
+                  </g>
 
-              <g id="pitch-tape">
-                <g id="pitch-labels" fill="white" font-size="3" text-anchor="middle" alignment-baseline="middle">
-                  <text x="-20" y="-20">20</text>
-                  <text x="20" y="-20">20</text>
-                  <text x="-20" y="-10">10</text>
-                  <text x="20" y="-10">10</text>
-                  <text x="-20" y="10">10</text>
-                  <text x="20" y="10">10</text>
-                  <text x="-20" y="20">20</text>
-                  <text x="20" y="20">20</text>
-                </g>
-
-                <g id="pitch-angle-lines" stroke="white">
-                  <line x1="-15" y1="-20" x2="15" y2="-20" stroke-width="0.5"/>
-                  <line x1="-15" y1="-10" x2="15" y2="-10" stroke-width="0.5"/>
-                  <line x1="-15" y1="10" x2="15" y2="10" stroke-width="0.5"/>
-                  <line x1="-15" y1="20" x2="15" y2="20" stroke-width="0.5"/>
-                  <line x1="-10" y1="-15" x2="10" y2="-15" stroke-width="0.25"/>
-                  <line x1="-10" y1="-5" x2="10" y2="-5" stroke-width="0.25"/>
-                  <line x1="-10" y1="5" x2="10" y2="5" stroke-width="0.25"/>
-                  <line x1="-10" y1="15" x2="10" y2="15" stroke-width="0.25"/>
+                  <g id="pitch-angle-lines" stroke="white">
+                    <line x1="-15" y1="-20" x2="15" y2="-20" stroke-width="0.5"/>
+                    <line x1="-15" y1="-10" x2="15" y2="-10" stroke-width="0.5"/>
+                    <line x1="-15" y1="10" x2="15" y2="10" stroke-width="0.5"/>
+                    <line x1="-15" y1="20" x2="15" y2="20" stroke-width="0.5"/>
+                    <line x1="-10" y1="-15" x2="10" y2="-15" stroke-width="0.25"/>
+                    <line x1="-10" y1="-5" x2="10" y2="-5" stroke-width="0.25"/>
+                    <line x1="-10" y1="5" x2="10" y2="5" stroke-width="0.25"/>
+                    <line x1="-10" y1="15" x2="10" y2="15" stroke-width="0.25"/>
+                  </g>
                 </g>
               </g>
+              <path id="pitch-pointer" d="M 0,-45 L -1.5,-42 L 1.5,-42 Z" fill="white" />
+              <!-- <circle id="mask" r="40" fill="url(#circle-fade-mask)" /> -->
             </g>
-            <path id="pitch-pointer" d="M 0,-45 L -1.5,-42 L 1.5,-42 Z" fill="white" />
-            <!-- <circle id="mask" r="40" fill="url(#circle-fade-mask)" /> -->
-          </g>
 
           <g id="pitch-angle">
             <path id="pitch-arc" d="M-45,0 A5,5 0 1,1 45,0" fill="none" stroke="white" stroke-width="0.5" />
