@@ -1,0 +1,16 @@
+<div phx-keydown="control_input" phx-target="window">
+  <div class="box">
+    <%= render "horizon.html", assigns %>
+  </div>
+  <div class="box">
+    <%= render "compass.html", assigns %>
+  </div>
+  <span
+    phx-hook="Map"
+    data-lat="<%= @simulator.location.lat %>"
+    data-lng="<%= @simulator.location.lng %>"
+    data-alt="<%= @simulator.altitude %>"
+    data-bearing="<%= @simulator.bearing %>"
+    data-pitch="<%= @simulator.pitch_angle %>">
+  </span>
+</div>
