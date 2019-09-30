@@ -2,7 +2,7 @@
 
 This is my entry in [Phoenix Phrenzy](https://phoenixphrenzy.com), showing off what [Phoenix](https://phoenixframework.org/) and [LiveView](https://github.com/phoenixframework/phoenix_live_view) can do.
 
-![Ground Control to Major Tom](https://groundstation.gigalixirapp.com/)
+![Ground Control to Major Tom](screenshot.png "Ground Control to Major Tom")
 
 This is a simple Flight Simulator written in Elixir. The flight simulation takes place completely on the server side, where Phoenix Live View sends DOM updates over a websocket at appoximately 30fps (1 tick every ~30ms).
 
@@ -33,7 +33,7 @@ Have fun!
 ## Limitations
 
 - It requires keyboard input to control the plane, so this probably won't work well on mobile devices (at least I haven't tested it)
-- This is running on a free tier Gigalixir deployment so if lots of people are using this it's going to not work that well
+- This is running on a tiny free tier Gigalixir deployment so if lots of people are using this, then it's going to not work that well. That said it's Elixir and it'll probably handle quite a lot of planes before crashing and burning ;)
 - If you want to experience it super smooth then please run it locally to spare some bandwidth
 - I tried getting the 3d camera to tilt but it wouldn't point up reliably, and often flipped upside down and be generally janky so our view stays level
 
@@ -51,8 +51,7 @@ I wrote the Flight Simulator so this would be a bit more interactive and fun for
 
 Special thanks to Robin Hilliard for the motivation to build this and some guidance around simplifying the maths of the simulator. Also thanks to David Parry and Rufus Post for moral support.
 
-Lastly I really appreciate all the hard work that's gone into Live View, it's a pretty amazing bit of technology that we'll hopefully see a lot more of in the coming years. So thanks Chris McCord and Jose Valim!
-
+Lastly I really appreciate all the hard work that's gone into Live View, it's an amazing technology that we'll hopefully see a lot more of in the coming years. So thanks Chris McCord and Jose Valim!
 
 # Phrenzy Instructions
 
