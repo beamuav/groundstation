@@ -36,6 +36,7 @@ Have fun!
 - This is running on a tiny free tier Gigalixir deployment so if lots of people are using this, then it's going to not work that well. That said it's Elixir and it'll probably handle quite a lot of planes before crashing and burning ;)
 - If you want to experience it super smooth then please run it locally to spare some bandwidth
 - I tried getting the 3d camera to tilt but it wouldn't point up reliably, and often flipped upside down and be generally janky so our view stays level
+- Don't fly too close to the ground as the 3d view doesn't react that well when you run into hills and mountains, but it's kind of fun.
 
 ## Contributing
 
