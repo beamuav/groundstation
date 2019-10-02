@@ -1,5 +1,21 @@
 import L from "leaflet"
 
+export function mountMap(location) {
+  document.map = L.map("map", {
+    zoomControl: false
+  }).setView(location, 13)
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(document.map)
+
+  document.mapMarker = L.marker(location, {
+    icon: plane(location.bearing)
+  }).addTo(document.map)
+}
+
+export function updateMap(location) {
+  document.map.setView(location, 12)
+  document.mapMarker.setLatLng(location).setIcon(plane(location.bearing))
+}
+
 export function plane(bearing) {
   return L.icon({
     iconUrl: `data:image/svg+xml;utf8,<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" transform="rotate(${45 + parseInt(bearing)} 0 0)">
