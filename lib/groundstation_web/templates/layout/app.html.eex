@@ -20,7 +20,7 @@
     <div id="view"></div>
 
     <footer class="bottom">
-      <a href="https://github.com/joshprice/groundstation">Instructions</a>
+      <a href="https://github.com/joshprice/groundstation#keyboard-commands">Instructions</a>
     </footer>
 
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
