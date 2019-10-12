@@ -2,19 +2,77 @@ import {
   loadModules
 } from 'esri-loader';
 
-loadModules(["esri/Map", "esri/views/SceneView"])
-  .then(([Map, SceneView]) => {
-    const map = new Map({
-      basemap: "hybrid",
-      ground: "world-elevation"
-    });
+export function mountView(location) {
+  loadModules(["esri/Map", "esri/views/SceneView"])
+    .then(([Map, SceneView]) => {
+      const view = document.view = new SceneView({
+        map: new Map({
+          basemap: "satellite",
+          ground: "world-elevation",
+          ui: {
+            components: []
+          }
+        }),
+        ui: {
+          components: []
+        },
+        environment: {
+          starsEnabled: false,
+          atmosphereEnabled: true
+        },
+        qualityProfile: "low",
+        container: "view",
+        zoom: 12,
+        tilt: 90,
+        rotation: 0,
+        center: {
+          latitude: parseFloat(location.lat),
+          longitude: parseFloat(location.lng),
+          z: parseFloat(location.alt),
+        }
+      });
 
-    document.view = new SceneView({
-      map: map,
-      container: "view",
-      camera: {
-        position: [0, 0, 0],
-        tilt: 80
-      }
+      view.on("focus", function (event) {
+        event.stopPropagation();
+      });
+      view.on("key-down", function (event) {
+        event.stopPropagation();
+      });
+      view.on("mouse-wheel", function (event) {
+        event.stopPropagation();
+      });
+      view.on("double-click", function (event) {
+        event.stopPropagation();
+      });
+      view.on("double-click", ["Control"], function (event) {
+        event.stopPropagation();
+      });
+      view.on("drag", function (event) {
+        event.stopPropagation();
+      });
+      view.on("drag", ["Shift"], function (event) {
+        event.stopPropagation();
+      });
+      view.on("drag", ["Shift", "Control"], function (event) {
+        event.stopPropagation();
+      });
     });
-  });
+}
+
+export function updateView(location) {
+  if (document.view) {
+    const value = {
+      position: {
+        latitude: parseFloat(location.lat),
+        longitude: parseFloat(location.lng),
+        z: parseFloat(location.alt),
+      },
+      zoom: 12,
+      heading: parseFloat(location.bearing),
+      tilt: 90
+    }
+    document.view.goTo(value, {
+      animate: false
+    });
+  }
+}

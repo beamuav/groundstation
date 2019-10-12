@@ -16,25 +16,25 @@ defmodule FlightSimulator do
   @max_pitch_angle 20.0
   @min_pitch_angle -20.0
 
-  @roll_delta 1
+  @roll_delta 1.0
   @max_roll_angle 50.0
   @min_roll_angle -50.0
 
   @yaw_delta 1.0
 
   @speed_delta 5.0
-  @min_speed 10.0
-  @max_speed 200.0
+  @min_speed 5.0
+  @max_speed 120.0
 
-  @min_altitude 0.0
+  @min_altitude 10.0
 
   @reset_factor 1.1
 
   defstruct bearing: 0.0,
-            altitude: 500.0,
+            altitude: @min_altitude,
             pitch_angle: 0.0,
             roll_angle: 0.0,
-            speed: 50.0,
+            speed: @min_speed,
             location: %{lat: 0.0, lng: 0.0}
 
   def reset_attitude(state),

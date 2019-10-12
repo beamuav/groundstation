@@ -20,70 +20,38 @@ import LiveSocket from "phoenix_live_view"
 import {
   Socket
 } from "phoenix";
-import L from "leaflet"
 import {
-  loadModules
-} from 'esri-loader';
-import {
-  plane
+  mountMap,
+  updateMap
 } from "./map"
+import {
+  mountView,
+  updateView
+} from "./view"
+
+function extractLocation(element) {
+  return {
+    lat: element.getAttribute("data-lat"),
+    lng: element.getAttribute("data-lng"),
+    alt: element.getAttribute("data-alt"),
+    bearing: element.getAttribute("data-bearing"),
+    pitch: element.getAttribute("data-pitch")
+  }
+}
 
 let Hooks = {}
 Hooks.Map = {
   mounted() {
-    const location = {
-      lat: this.el.getAttribute("data-lat"),
-      lng: this.el.getAttribute("data-lng"),
-      alt: this.el.getAttribute("data-alt"),
-      bearing: this.el.getAttribute("data-bearing"),
-      pitch: this.el.getAttribute("data-pitch")
-    }
-    document.map = L.map("map").setView(location, 13)
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(document.map)
-
-    document.mapMarker = L.marker(location, {
-      icon: plane(location.bearing)
-    }).addTo(document.map)
-
-    if (document.view) {
-      document.view.goTo({
-        center: [parseFloat(location.lat), parseFloat(location.lng), parseFloat(location.alt)],
-        zoom: 13,
-        heading: parseFloat(location.bearing),
-        tilt: 80
-      })
-    }
+    const location = extractLocation(this.el)
+    mountMap(location)
+    mountView(location)
   },
   updated() {
-    const location = {
-      lat: this.el.getAttribute("data-lat"),
-      lng: this.el.getAttribute("data-lng"),
-      alt: this.el.getAttribute("data-alt"),
-      bearing: this.el.getAttribute("data-bearing"),
-      pitch: this.el.getAttribute("data-pitch")
-    }
-    document.map.setView(location, 12)
-    document.mapMarker.setLatLng(location).setIcon(plane(location.bearing))
-
-    if (document.view) {
-      // console.log({
-      //   location
-      // })
-      document.view.goTo({
-        heading: parseFloat(location.bearing),
-        tilt: 80,
-        position: {
-          latitude: parseFloat(location.lat),
-          longitude: parseFloat(location.lng),
-          z: parseFloat(location.alt),
-        }
-      })
-    }
+    const location = extractLocation(this.el)
+    updateMap(location)
+    updateView(location)
   }
 }
-
 
 let liveSocket = new LiveSocket("/live", Socket, {
   hooks: Hooks
