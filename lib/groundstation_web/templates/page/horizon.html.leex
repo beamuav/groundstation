@@ -17,7 +17,11 @@
     </radialGradient>
   </defs>
 
-  <g transform="rotate(<%= -@simulator.roll_angle %>)">
+  <mask id="circle-mask">
+    <circle cx="0" cy="0" r="45" fill="white"/>
+  </mask>
+
+  <g transform="rotate(<%= -@simulator.roll_angle %>)" mask="url(#circle-mask)">
     <g transform="translate(0 <%= @simulator.pitch_angle %>)">
       <rect fill="url(#sky)" height="200" width="200" x="-100" y="-200" />
       <rect fill="url(#ground)" height="200" width="200" x="-100" y="0" stroke="white" stroke-width="0.25" />
