@@ -1,15 +1,13 @@
 defmodule GroundStationWeb.SimulatorLive do
   use Phoenix.LiveView
 
-  @tick 15
+  @tick 30
   @tick_seconds @tick / 1000
 
   # Start on the Sydney Airport runway
   @initial_simulator %FlightSimulator{
     location: %{lat: -33.964592291602244, lng: 151.18069727924058},
-    speed: 2.5,
-    bearing: 347.0,
-    altitude: 5.0
+    bearing: 347.0
   }
 
   def render(assigns) do
@@ -28,7 +26,6 @@ defmodule GroundStationWeb.SimulatorLive do
   def handle_info(:tick, socket) do
     socket.assigns.simulator
     |> FlightSimulator.update(@tick_seconds)
-    |> IO.inspect()
     |> update_simulator(socket)
   end
 

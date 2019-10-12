@@ -5,31 +5,74 @@ import {
 export function mountView(location) {
   loadModules(["esri/Map", "esri/views/SceneView"])
     .then(([Map, SceneView]) => {
-      const map = new Map({
-        basemap: "hybrid",
-        ground: "world-elevation"
+      const view = document.view = new SceneView({
+        map: new Map({
+          basemap: "satellite",
+          ground: "world-elevation",
+          ui: {
+            components: []
+          }
+        }),
+        ui: {
+          components: []
+        },
+        environment: {
+          starsEnabled: false,
+          atmosphereEnabled: true
+        },
+        qualityProfile: "low",
+        container: "view",
+        zoom: 12,
+        tilt: 90,
+        rotation: 0,
+        center: {
+          latitude: parseFloat(location.lat),
+          longitude: parseFloat(location.lng),
+          z: parseFloat(location.alt),
+        }
       });
 
-      document.view = new SceneView({
-        map: map,
-        container: "view"
+      view.on("focus", function (event) {
+        event.stopPropagation();
       });
-
-      updateView(location);
+      view.on("key-down", function (event) {
+        event.stopPropagation();
+      });
+      view.on("mouse-wheel", function (event) {
+        event.stopPropagation();
+      });
+      view.on("double-click", function (event) {
+        event.stopPropagation();
+      });
+      view.on("double-click", ["Control"], function (event) {
+        event.stopPropagation();
+      });
+      view.on("drag", function (event) {
+        event.stopPropagation();
+      });
+      view.on("drag", ["Shift"], function (event) {
+        event.stopPropagation();
+      });
+      view.on("drag", ["Shift", "Control"], function (event) {
+        event.stopPropagation();
+      });
     });
 }
 
 export function updateView(location) {
   if (document.view) {
-    document.view.goTo({
+    const value = {
       position: {
         latitude: parseFloat(location.lat),
         longitude: parseFloat(location.lng),
         z: parseFloat(location.alt),
       },
-      zoom: 13,
+      zoom: 12,
       heading: parseFloat(location.bearing),
-      tilt: 90 + parseFloat(location.pitch)
+      tilt: 90
+    }
+    document.view.goTo(value, {
+      animate: false
     });
   }
 }

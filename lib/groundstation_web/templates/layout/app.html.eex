@@ -4,25 +4,24 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ground Station: Team Beam</title>
+    <title>Phoenix Phrenzy: Flight Simulator</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=B612&display=swap" />
   </head>
 
   <body>
-    <div class="xwrapper">
-      <header class="top">
-        <h3>Ground Control to Major Tom</h3>
-      </header>
-      
-      <%= render @view_module, @view_template, assigns %>
+    <header class="top">
+      <h3>Ground Control to Major Tom <small>by Josh Price</small></h3>
+    </header>
+    
+    <%= render @view_module, @view_template, assigns %>
 
-      <div id="map"></div>
-      <div id="view"></div>
+    <div id="map"></div>
+    <div id="view"></div>
 
-      <footer class="bottom">
-      </footer>
-    </div>
+    <footer class="bottom">
+      <a href="https://github.com/joshprice/groundstation#keyboard-commands">Instructions</a>
+    </footer>
 
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 
