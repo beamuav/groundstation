@@ -39,17 +39,20 @@ function extractLocation(element) {
   }
 }
 
+const mapState = {}
+const viewState = {}
+
 let Hooks = {}
 Hooks.Map = {
   mounted() {
     const location = extractLocation(this.el)
-    mountMap(location)
-    mountView(location)
+    mountMap(mapState, location)
+    mountView(viewState, location)
   },
   updated() {
     const location = extractLocation(this.el)
-    updateMap(location)
-    updateView(location)
+    updateMap(mapState, location)
+    updateView(viewState, location)
   }
 }
 

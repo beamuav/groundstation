@@ -2,10 +2,10 @@ import {
   loadModules
 } from 'esri-loader';
 
-export function mountView(location) {
+export function mountView(state, location) {
   loadModules(["esri/Map", "esri/views/SceneView"])
     .then(([Map, SceneView]) => {
-      const view = document.view = new SceneView({
+      const view = state.view = new SceneView({
         map: new Map({
           basemap: "satellite",
           ground: "world-elevation",
@@ -59,8 +59,8 @@ export function mountView(location) {
     });
 }
 
-export function updateView(location) {
-  if (document.view) {
+export function updateView(state, location) {
+  if (state.view) {
     const value = {
       position: {
         latitude: parseFloat(location.lat),
@@ -71,7 +71,7 @@ export function updateView(location) {
       heading: parseFloat(location.bearing),
       tilt: 90
     }
-    document.view.goTo(value, {
+    state.view.goTo(value, {
       animate: false
     });
   }
