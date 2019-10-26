@@ -28,4 +28,14 @@ defmodule GroundStationWeb.PageController do
       session: %{vehicle: camp_wombaroo}
     )
   end
+
+  def console(conn, _params) do
+    console =
+      %Console{
+        history: []
+      }
+      |> IO.inspect()
+
+    live_render(conn, GroundStationWeb.ConsoleLive, session: %{console: console})
+  end
 end

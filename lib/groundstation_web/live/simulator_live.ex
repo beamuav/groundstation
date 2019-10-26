@@ -2,8 +2,7 @@ defmodule GroundStationWeb.SimulatorLive do
   use Phoenix.LiveView
 
   @tick 30
-  @tick_seconds @tick / 1000
-
+  @tick_seconds @tick / 1000 
   def render(assigns) do
     Phoenix.View.render(GroundStationWeb.PageView, "simulator.html", assigns)
   end

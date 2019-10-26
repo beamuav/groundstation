@@ -20,5 +20,6 @@ defmodule GroundStationWeb.Router do
     get "/", PageController, :index
     get "/simulator", PageController, :simulator
     get "/mavlink_viz", PageController, :mavlink_viz
+    get "/console", PageController, :console
   end
 end

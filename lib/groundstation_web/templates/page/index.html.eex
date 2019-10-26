@@ -5,6 +5,7 @@
 <ul>
   <li><%= link("Simple Flight Simulator", to: "/simulator") %></li>
   <li><%= link("Mavlink Visualisation", to: "/mavlink_viz") %></li>
+  <li><%= link("Console", to: "/console") %></li>
 </ul>
 
 <footer class="bottom">

@@ -81,6 +81,44 @@ body {
   height: 400px;
 }
 
+.log {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  height: 300px;
+  position: absolute;
+  top: -300px;
+  background-color: black;
+  opacity: 0.9;
+  width: 100%;
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.log.open {
+  top: 0px;
+}
+
+.log form input {
+  outline: none;
+  background: transparent;
+  border: 0;
+  width: 100%;
+}
+
+.log ul {
+  justify-content: normal;
+}
+
+.log ul li, .log form input {
+  padding: .5em;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  opacity: 1;
+}
+
 svg {
   fill: #eee;
 }
