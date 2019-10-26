@@ -17,8 +17,8 @@
     </radialGradient>
   </defs>
 
-  <g transform="rotate(<%= -@simulator.roll_angle %>)">
-    <g transform="translate(0 <%= @simulator.pitch_angle %>)">
+  <g transform="rotate(<%= -@roll_angle %>)">
+    <g transform="translate(0 <%= @pitch_angle %>)">
       <rect fill="url(#sky)" height="200" width="200" x="-100" y="-200" />
       <rect fill="url(#ground)" height="200" width="200" x="-100" y="0" stroke="white" stroke-width="0.25" />
 
@@ -65,8 +65,8 @@
 
   <g id="metrics">
     <text x="-45" y="45" font-size="4">Altitude (m) </text>
-    <text x="-45" y="40" font-size="6"><%= Float.round(@simulator.altitude) %></text>
+    <text x="-45" y="40" font-size="6"><%= Float.round(@altitude) %></text>
     <text x="15" y="45" font-size="4">Speed (m/s) </text>
-    <text x="15" y="40" font-size="6"><%= Float.round(@simulator.speed) %></text>
+    <text x="15" y="40" font-size="6"><%= Float.round(@speed) %></text>
   </g>
 </svg>

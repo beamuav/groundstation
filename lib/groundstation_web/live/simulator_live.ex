@@ -4,23 +4,14 @@ defmodule GroundStationWeb.SimulatorLive do
   @tick 30
   @tick_seconds @tick / 1000
 
-  # Start on the Sydney Airport runway
-  @initial_simulator %FlightSimulator{
-    location: %{lat: -33.964592291602244, lng: 151.18069727924058},
-    bearing: 347.0
-  }
-
   def render(assigns) do
     Phoenix.View.render(GroundStationWeb.PageView, "simulator.html", assigns)
   end
 
-  def mount(_session, socket) do
+  def mount(session, socket) do
     if connected?(socket), do: :timer.send_interval(@tick, self(), :tick)
 
-    {:ok,
-     assign(socket,
-       simulator: @initial_simulator
-     )}
+    {:ok, assign(socket, simulator: session.simulator)}
   end
 
   def handle_info(:tick, socket) do

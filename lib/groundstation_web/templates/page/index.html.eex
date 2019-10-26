@@ -1,0 +1,12 @@
+<header class="top">
+  <h3>Ground Control Prototype <small>by Beam UAV</small></h3>
+</header>
+    
+<ul>
+  <li><%= link("Simple Flight Simulator", to: "/simulator") %></li>
+  <li><%= link("Mavlink Visualisation", to: "/mavlink_viz") %></li>
+</ul>
+
+<footer class="bottom">
+</footer>
+

@@ -1,9 +1,19 @@
+<header class="top">
+  <h3>Ground Control to Major Tom <small>by Josh Price</small></h3>
+</header>
+
 <div phx-keydown="control_input" phx-target="window">
   <div class="box">
-    <%= render "horizon.html", assigns %>
+    <%=
+      render "horizon.html",
+        pitch_angle: @simulator.pitch_angle,
+        roll_angle: @simulator.roll_angle,
+        altitude: @simulator.altitude,
+        speed: @simulator.speed
+    %>
   </div>
   <div class="box">
-    <%= render "compass.html", assigns %>
+    <%= render "compass.html", bearing: @simulator.bearing %>
   </div>
   <span
     phx-hook="Map"
@@ -14,3 +24,11 @@
     data-pitch="<%= @simulator.pitch_angle %>">
   </span>
 </div>
+
+<div id="map" phx-update="ignore"></div>
+<div id="view" phx-update="ignore"></div>
+
+<footer class="bottom">
+  <a href="https://github.com/joshprice/groundstation#keyboard-commands">Instructions</a>
+</footer>
+

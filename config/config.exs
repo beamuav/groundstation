@@ -13,11 +13,11 @@ config :groundstation,
 # Configures the endpoint
 config :groundstation, GroundStationWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "dummy_val_for_dev_env",
+  secret_key_base: "FcCHrUgwj4Jw6Xsr0DztPH7PZwjIHsmmvpCj82ni2oBxkM3cWap2oqNgybKlnOcI",
   render_errors: [view: GroundStationWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: GroundStation.PubSub, adapter: Phoenix.PubSub.PG2],
   live_view: [
-    signing_salt: "another_dummy_val_for_dev_env"
+    signing_salt: "IblZUq/WraCih7jqw3zpQ7NAHl6lWJghaoERcm8DICRbOwZvPbEVbLwchKaJbZC7"
   ]
 
 # Configures Elixir's Logger

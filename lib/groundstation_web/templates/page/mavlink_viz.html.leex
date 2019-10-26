@@ -1,0 +1,37 @@
+<header class="top">
+  <h3>Mavlink Visualisation</h3>
+</header>
+
+<div>
+  <div class="box">
+    <%=
+      render "horizon.html",
+        pitch_angle: @vehicle.pitch_angle,
+        roll_angle: @vehicle.roll_angle,
+        altitude: @vehicle.altitude,
+        speed: @vehicle.speed
+    %>
+  </div>
+  <div class="box">
+    <%= render "compass.html", bearing: @vehicle.bearing %>
+  </div>
+  <div class="box">
+    <%=# render "gauge.html", %{value: assigns.fuel_level, label: "Fuel", min: 0, max: 3000} %>
+  </div>
+  <span
+    phx-hook="Map"
+    data-lat="<%= @vehicle.location.lat %>"
+    data-lng="<%= @vehicle.location.lng %>"
+    data-alt="<%= @vehicle.altitude %>"
+    data-bearing="<%= @vehicle.bearing %>"
+    data-pitch="<%= @vehicle.pitch_angle %>">
+  </span>
+</div>
+
+<div id="map" phx-update="ignore"></div>
+<div id="view" phx-update="ignore"></div>
+
+<footer class="bottom">
+</footer>
+
+

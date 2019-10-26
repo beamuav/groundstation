@@ -18,14 +18,7 @@ defmodule GroundStationWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    live "/compass", CompassLive
-    live "/horizon", HorizonLive
-    live "/dial", DialLive
-    live "/gauge", GaugeLive
+    get "/simulator", PageController, :simulator
+    get "/mavlink_viz", PageController, :mavlink_viz
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", GroundStationWeb do
-  #   pipe_through :api
-  # end
 end
