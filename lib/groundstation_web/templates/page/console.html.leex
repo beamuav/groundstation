@@ -2,18 +2,18 @@
   <div id="console">
     <div class="log <%= if @console.open do "open" else "" end %>">
       <ul>
-        <%= for command <- Enum.reverse(@console.history) do %>
-          <li> <%= command %> </li>
+        <%= for message <- Enum.reverse(@console.messages) do %>
+          <li><pre><%= message %></pre></li>
         <% end %>
       </ul>
       <form action="#" phx-submit="console" autocomplete="off">
-        <%= text_input :command, :input, placeholder: ">" %>
+        <%= text_input :command, :input, placeholder: ">", autofocus: true %>
       </form>
     </div>
   </div>
 </div>
 
 <header class="top">
-  <h3>Command key to toggle console</h3>
+  <h3>Escape key to toggle console</h3>
 </header>
 

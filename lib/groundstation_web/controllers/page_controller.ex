@@ -32,7 +32,9 @@ defmodule GroundStationWeb.PageController do
   def console(conn, _params) do
     console =
       %Console{
-        history: []
+        history: [],
+        messages: [],
+        open: false
       }
       |> IO.inspect()
 
