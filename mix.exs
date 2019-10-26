@@ -38,6 +38,7 @@ defmodule GroundStation.MixProject do
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_live_view, "~> 0.3"},
       {:ecto_sql, "~> 3.1"},
+      {:mavlink, "~> 0.6"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
