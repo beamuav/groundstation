@@ -2,47 +2,47 @@ defmodule GroundStationWeb.MavlinkVizLive do
   use Phoenix.LiveView
 
   def render(assigns) do
-    IO.inspect(assigns)
     Phoenix.View.render(GroundStationWeb.PageView, "mavlink_viz.html", assigns)
   end
 
   def mount(session, socket) do
-    IO.inspect(session)
     MAVLink.Router.subscribe(message: APM.Message.VfrHud)
     MAVLink.Router.subscribe(message: APM.Message.GlobalPositionInt)
+    MAVLink.Router.subscribe(message: APM.Message.Attitude)
 
     {:ok, assign(socket, vehicle: session.vehicle)}
   end
 
-  # def handle_info(
-  #       message,
-  #       socket
-  #     ) do
-  #   IO.inspect(message)
-  #   {:noreply, socket}
-  # end
-
   def handle_info(
-        message = %APM.Message.VfrHud{groundspeed: groundspeed, heading: heading, alt: alt},
+        %APM.Message.Attitude{roll: roll, pitch: pitch, yaw: yaw},
         socket
       ) do
-    IO.inspect(message)
-
     socket.assigns.vehicle
-    |> Map.update(speed: groundspeed)
-    |> Map.update(bearing: heading)
-    |> Map.update(alt: alt)
+    |> Map.put(:pitch_angle, degrees(pitch))
+    |> Map.put(:roll_angle, degrees(roll))
+    |> Map.put(:yaw_angle, degrees(yaw))
     |> update_vehicle(socket)
   end
 
   def handle_info(
-        message = %APM.Message.GlobalPositionInt{lat: lat, lon: lon},
+        %APM.Message.VfrHud{groundspeed: groundspeed, heading: heading, alt: alt},
         socket
       ) do
-    IO.inspect(message)
+    socket.assigns.vehicle
+    |> Map.put(:speed, groundspeed)
+    |> Map.put(:bearing, heading)
+    |> Map.put(:altitude, metres(alt))
+    |> update_vehicle(socket)
+  end
+
+  def handle_info(
+        %APM.Message.GlobalPositionInt{lat: lat, lon: lon},
+        socket
+      ) do
+    location = %{lat: convert_gps(lat), lng: convert_gps(lon)}
 
     socket.assigns.vehicle
-    |> Map.update(location: %{lat: lat, lng: lon})
+    |> Map.put(:location, location)
     |> update_vehicle(socket)
   end
 
@@ -52,5 +52,17 @@ defmodule GroundStationWeb.MavlinkVizLive do
 
   def update_vehicle(state, socket) do
     {:noreply, assign(socket, :vehicle, state)}
+  end
+
+  defp convert_gps(val) do
+    (val |> round()) / 10_000_000.0
+  end
+
+  defp degrees(val) do
+    val / :math.pi() * 180.0
+  end
+
+  defp metres(val) do
+    Float.round(val / 100.0, 2)
   end
 end
