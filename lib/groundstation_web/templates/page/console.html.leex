@@ -1,6 +1,6 @@
 <div phx-keydown="control_input" phx-target="window">
   <div id="console">
-    <div class="log <%= if @console.open do "open" else "" end %>">
+    <div class="log <%= if @console.open do "open" else "" end %>" style="opacity: <%= @console.opacity %>">
       <ul>
         <%= for message <- Enum.reverse(@console.messages) do %>
           <li><pre><%= message %></pre></li>

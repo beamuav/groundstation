@@ -34,6 +34,10 @@ defmodule GroundStationWeb.PageController do
       %Console{
         history: [],
         messages: [],
+        vehicle: %Vehicle{
+          location: %{lat: -34.3889458, lng: 150.3293791}
+        },
+        opacity: 0.9,
         open: false
       }
       |> IO.inspect()
