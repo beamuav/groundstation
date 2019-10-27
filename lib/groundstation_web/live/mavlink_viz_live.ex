@@ -25,24 +25,24 @@ defmodule GroundStationWeb.MavlinkVizLive do
   end
 
   def handle_info(
-        %APM.Message.VfrHud{groundspeed: groundspeed, heading: heading, alt: alt},
+        %APM.Message.VfrHud{groundspeed: groundspeed, heading: heading},
         socket
       ) do
     socket.assigns.vehicle
     |> Map.put(:speed, groundspeed)
     |> Map.put(:bearing, heading)
-    |> Map.put(:altitude, metres(alt))
     |> update_vehicle(socket)
   end
 
   def handle_info(
-        %APM.Message.GlobalPositionInt{lat: lat, lon: lon},
+        %APM.Message.GlobalPositionInt{lat: lat, lon: lon, alt: alt, relative_alt: relative_alt},
         socket
       ) do
     location = %{lat: convert_gps(lat), lng: convert_gps(lon)}
 
     socket.assigns.vehicle
     |> Map.put(:location, location)
+    |> Map.put(:altitude, metres(relative_alt))
     |> update_vehicle(socket)
   end
 
@@ -63,6 +63,6 @@ defmodule GroundStationWeb.MavlinkVizLive do
   end
 
   defp metres(val) do
-    Float.round(val / 100.0, 2)
+    round(val) / 1000.0
   end
 end
