@@ -15,12 +15,17 @@ defmodule GroundStationWeb.PageController do
   end
 
   def mavlink_viz(conn, _params) do
-    camp_wombaroo =
+    mavlink_vehicle =
+      camp_wombaroo =
       %Vehicle{
         location: %{lat: -34.3889458, lng: 150.3293791}
       }
       |> IO.inspect()
 
-    live_render(conn, GroundStationWeb.MavlinkVizLive, session: %{vehicle: camp_wombaroo})
+    live_render(
+      conn,
+      GroundStationWeb.MavlinkVizLive,
+      session: %{vehicle: camp_wombaroo}
+    )
   end
 end
